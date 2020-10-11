@@ -23,14 +23,13 @@ jobs:
       - name: Get LLVM Source
         run: |
           git clone --config core.autocrlf=false https://github.com/llvm/llvm-project.git
-          cd llvm-project
-      - name: Prepare
+      - name: Prepare And Build
         run: |
+          cd llvm-project
           mkdir build
           cd build
           cmake -G "Unix Makefiles" ../llvm
-      - name: Build
-        run: make
+          make
       # Runs a set of commands using the runners shell
       - name: Finish
         run: finished
