@@ -30,6 +30,17 @@ jobs:
           cd build
           cmake -G "Unix Makefiles" ../llvm
           make
+      - name: Archive Release
+        uses: thedoctor0/zip-release@master
+        with:
+          filename: 'release.zip'
+          directory: 'llvm-project/build'
+      - name: Publish Release
+        uses: xresloader/upload-to-github-release@v1.1.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: release.zip
       # Runs a set of commands using the runners shell
       - name: Finish
         run: finished
