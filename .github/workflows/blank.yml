@@ -18,12 +18,10 @@ jobs:
     runs-on: windows-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Cache multiple paths
-        uses: actions/cache@v2
-        with:
-          path: |
-            llvm-project
-          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+      - name: Install Winget
+        run: |
+          wget https://github.com/microsoft/winget-cli/releases/download/v.0.2.2521-preview/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle
+          Add-AppxPackage -Path "C:\Windows\system32" Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle
       - name: Install Visual Studio
         uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
       - name: Install Clang
@@ -34,6 +32,12 @@ jobs:
       - name: Get LLVM Source
         run: |
           git clone --config core.autocrlf=false https://github.com/llvm/llvm-project.git
+      - name: Cache multiple paths
+        uses: actions/cache@v2
+        with:
+          path: |
+            llvm-project
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
       - name: Prepare And Build
         run: |
           cd llvm-project
