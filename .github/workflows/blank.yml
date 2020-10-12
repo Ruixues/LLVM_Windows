@@ -18,6 +18,12 @@ jobs:
     runs-on: windows-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Cache multiple paths
+        uses: actions/cache@v2
+        with:
+          path: |
+            llvm-project
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
       - name: Install Visual Studio
         uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
       - name: Install Clang
