@@ -27,8 +27,10 @@ jobs:
       - name: Install Visual Studio
         uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
       - name: Install Clang
-        run: 
-          winget install llvm
+        uses: Amadevus/pwsh-script@v2.0.0
+        with:
+          script: 
+            winget install llvm
       - name: Get LLVM Source
         run: |
           git clone --config core.autocrlf=false https://github.com/llvm/llvm-project.git
