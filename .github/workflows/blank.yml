@@ -18,12 +18,11 @@ jobs:
     runs-on: windows-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Github Action for wget
-        uses: wei/wget@v1.1.1
       - name: Install Winget
         run: |
-          wget https://github.com/microsoft/winget-cli/releases/download/v.0.2.2521-preview/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle
-          Add-AppxPackage -Path "C:\Windows\system32" Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle
+          Invoke-WebRequest -uri https://github.com/microsoft/winget-cli/releases/download/v.0.2.2521-preview/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle -OutFile winget.appxbundle
+          Unblock-File winget.appxbundle
+          Add-AppxPackage -Path "C:\Windows\system32" winget.appxbundle
       - name: Install Visual Studio
         uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
       - name: Install Clang
