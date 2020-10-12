@@ -36,8 +36,8 @@ jobs:
           cd llvm-project
           mkdir build
           cd build
-          set CC=clang
-          set CXX=clang++
+          $env:CC="clang"
+          $env:CXX="clang++"
           cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ../llvm
           make -j16
       - name: Archive Release
