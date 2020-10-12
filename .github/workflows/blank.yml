@@ -27,7 +27,8 @@ jobs:
       - name: Install Visual Studio
         uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
       - name: Install Clang
-        uses: KyleMayes/install-llvm-action@v1.0.0
+        run: 
+          winget install llvm
       - name: Get LLVM Source
         run: |
           git clone --config core.autocrlf=false https://github.com/llvm/llvm-project.git
