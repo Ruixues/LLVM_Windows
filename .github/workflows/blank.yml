@@ -22,7 +22,9 @@ jobs:
         run: |
           set-executionpolicy remotesigned -s cu
           Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+          scoop bucket add llvm-mingw
           scoop update
+          
           scoop install llvm-mingw
       - name: Install Visual Studio
         uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
