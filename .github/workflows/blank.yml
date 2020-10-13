@@ -39,10 +39,8 @@ jobs:
           cd llvm-project
           mkdir build
           cd build
-          $env:CC="clang"
-          $env:CXX="clang++"
           cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ../llvm
-          make -j16
+          make -j8
       - name: Get LLVM Source
         run: |
       - name: Prepare And Build
