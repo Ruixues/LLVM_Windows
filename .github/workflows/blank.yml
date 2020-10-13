@@ -20,10 +20,9 @@ jobs:
     steps:
       - name: Install Winget
         run: |
-          Get-AppXPackage -AllUsers | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
-          Invoke-WebRequest -uri https://github.com/microsoft/winget-cli/releases/download/v.0.2.2521-preview/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle -OutFile winget.appxbundle
-          Unblock-File winget.appxbundle
-          Add-AppxPackage winget.appxbundle
+          set-executionpolicy remotesigned -s cu
+          Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+          scoop install clang
       - name: Install Visual Studio
         uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
       - name: Install Clang
