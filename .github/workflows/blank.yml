@@ -18,6 +18,13 @@ jobs:
     runs-on: windows-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Cache multiple paths
+        uses: actions/cache@v2
+        id: cache-llvm_project
+        with:
+          path:
+            ./llvm-project
+          key: ${{ runner.os }}-llvm_project
       - name: Install Clang
         run: |
           set-executionpolicy remotesigned -s cu
@@ -25,21 +32,16 @@ jobs:
           scoop bucket add dorado https://github.com/chawyehsu/dorado
           scoop update
           scoop install llvm
+          $env:path+="~\scoop\bin"
+          clang
       - name: Install Visual Studio
         uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
       - name: Get LLVM Source
         run: |
           git clone --config core.autocrlf=false https://github.com/llvm/llvm-project.git
-      - name: Cache multiple paths
-        uses: actions/cache@v2
-        id: cache-llvm_project
-        with:
-          path: |
-            ./llvm-project
-          key: ${{ runner.os }}-llvm_project
       - name: Prepare And Build
         run: |
-          $env:path+="~\scoop\shims"
+          $env:path+="~\scoop\shims\bin"
           cd llvm-project
           mkdir build
           cd build
