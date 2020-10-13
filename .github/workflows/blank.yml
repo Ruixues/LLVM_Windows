@@ -24,7 +24,7 @@ jobs:
           Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
           scoop bucket add dorado https://github.com/chawyehsu/dorado
           scoop update
-          scoop install dorado/llvm-mingw
+          scoop install llvm
       - name: Install Visual Studio
         uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
       - name: Get LLVM Source
