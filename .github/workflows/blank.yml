@@ -22,10 +22,9 @@ jobs:
         run: |
           set-executionpolicy remotesigned -s cu
           Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
-          scoop bucket add llvm-mingw
+          scoop bucket add dorado https://github.com/chawyehsu/dorado
           scoop update
-          
-          scoop install llvm-mingw
+          scoop install dorado/llvm-mingw
       - name: Install Visual Studio
         uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
       - name: Install Clang
