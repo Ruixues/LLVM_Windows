@@ -19,11 +19,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-      - name: Test
-        uses: vimtor/action-zip@v1
-        with:
-          dest: 'release.zip'
-          files: 'llvm-project/build'
       - name: Cache multiple paths
         uses: actions/cache@v2
         id: cache-llvm_project
