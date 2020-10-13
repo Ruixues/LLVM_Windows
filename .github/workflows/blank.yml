@@ -33,7 +33,6 @@ jobs:
           scoop update
           scoop install llvm
           $env:path+="~\scoop\bin"
-          clang
       - name: Install Visual Studio
         uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
       - name: Get LLVM Source
