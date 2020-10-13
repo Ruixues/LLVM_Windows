@@ -32,9 +32,10 @@ jobs:
           git clone --config core.autocrlf=false https://github.com/llvm/llvm-project.git
       - name: Cache multiple paths
         uses: actions/cache@v2
+        id: cache-llvm_project
         with:
           path: |
-            llvm-project
+            ./llvm-project
           key: ${{ runner.os }}-llvm_project
       - name: Prepare And Build
         run: |
