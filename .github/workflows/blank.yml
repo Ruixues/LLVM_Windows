@@ -38,6 +38,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
       - name: Prepare And Build
         run: |
+          $env:path+="~\scoop\shims"
           cd llvm-project
           mkdir build
           cd build
