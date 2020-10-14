@@ -45,11 +45,16 @@ jobs:
         with:
           dest: 'release.zip'
           files: 'llvm-project/build'
-      - name: Publish Release
-        uses: svenstaro/upload-release-action@v2
+      - name: Upload a Release Asset
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: release.zip
-          asset_name: release.zip
-          overwrite: true
-          body: llvm_windows
+            # The URL for uploading assets to the release
+            upload_url: https://github.com/Ruixues/LLVM_Windows
+            # The path to the asset you want to upload
+            asset_path: ./release.zip
+    # The name of the asset you want to upload
+            asset_name: "release.zip"
+    # The content-type of the asset you want to upload. See the supported Media Types here: https://www.iana.org/assignments/media-types/media-types.xhtml for more information
+            asset_content_type: application/zip
