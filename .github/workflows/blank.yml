@@ -52,5 +52,3 @@ jobs:
           asset_name: release.zip
           overwrite: true
           body: llvm_windows
-      # Runs a set of commands using the runners shell
-      - name: Finish
