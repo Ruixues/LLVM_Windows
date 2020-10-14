@@ -35,7 +35,7 @@ jobs:
           mkdir build
           cd build
           cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ../llvm
-          make -j8
+          cmake --build . -j8
       - name: Get LLVM Source
         run: |
       - name: Prepare And Build
