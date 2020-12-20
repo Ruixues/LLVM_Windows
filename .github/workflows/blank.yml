@@ -34,17 +34,21 @@ jobs:
           cd llvm-project
           mkdir build
           cd build
-          cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ../llvm
-          cmake --build . -j8
-      - name: Get LLVM Source
+          cmake -G "Visual Studio 16 2019" -A x64 ../llvm
+      - name: Build
         run: |
-      - name: Prepare And Build
+          cd llvm-project
+          cd build
+          cmake --build . --config Release --target ALL_BUILD
+          cmake --build . --config Release --target INSTALL
+      - name: Install
         run: |
+          cmake -DCMAKE_INSTALL_PREFIX=install --install
       - name: Archive Release
         uses: vimtor/action-zip@v1
         with:
           dest: 'release.zip'
-          files: 'llvm-project/build'
+          files: 'install'
       - name: Upload a Release Asset
         uses: actions/upload-release-asset@v1.0.2
         env:
