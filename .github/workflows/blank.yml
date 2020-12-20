@@ -34,7 +34,7 @@ jobs:
           cd llvm-project
           mkdir build
           cd build
-          cmake -G "Visual Studio 16 2019" -A x64 ../llvm
+          cmake -G "Visual Studio 16 2019" -A x64 -Thost=x64 ../llvm
       - name: Build
         run: |
           cd llvm-project
