@@ -51,7 +51,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-            # The URL for uploading assets to the release
             upload_url: https://github.com/Ruixues/LLVM_Windows
             # The path to the asset you want to upload
             asset_path: ./release.zip
