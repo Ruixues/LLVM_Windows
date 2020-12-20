@@ -46,12 +46,24 @@ jobs:
         with:
           dest: 'release.zip'
           files: 'C:\Program Files\LLVM'
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: "llvm"
+          release_name: Release LLVM
+          body: |
+            LLVM
+          draft: false
+          prerelease: false
       - name: Upload a Release Asset
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-            upload_url: https://github.com/Ruixues/LLVM_Windows
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
             # The path to the asset you want to upload
             asset_path: ./release.zip
     # The name of the asset you want to upload
