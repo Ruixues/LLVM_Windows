@@ -19,31 +19,14 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-      - name: Install Visual Studio
-        uses: ilammy/msvc-dev-cmd@v1
-      - name: Install Clang
-        continue-on-error: true
-        run: |
-          git clone https://github.com/llvm/llvm-project
-          cd llvm-project
-          mkdir build
-          cd build
-          cmake -G "Visual Studio 16 2019" -A x64 -Thost=x64 ../llvm
-      - name: Build
-        run: |
-          cd llvm-project
-          cd build
-          cmake --build . --config Release --target ALL_BUILD
-          cmake --build . --config Release --target INSTALL
-      - name: Zip Release
+
+      - name: Setup MSYS2
   # You may pin to the exact commit or the version.
-  # uses: TheDoctor0/zip-release@a1afcab9c664c9976ac398fa831eac67bed1eb0e
-        uses: TheDoctor0/zip-release@0.4.1
+  # uses: msys2/setup-msys2@e00cc7ca871a28b4d575714454769e57342da3da
+        uses: msys2/setup-msys2@v2
         with:
-    # Filename for archive
-          filename: "release.zip" # default is release.zip
-    # Working directory before zipping
-          directory: "C:/Program Files/LLVM"
+          install: "zip"
+          #directory: "C:/Program Files/LLVM"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
