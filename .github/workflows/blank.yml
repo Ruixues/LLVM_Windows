@@ -29,6 +29,7 @@ jobs:
       - name: Install Visual Studio
         uses: ilammy/msvc-dev-cmd@v1
       - name: Install Clang
+        continue-on-error: true
         run: |
           git clone https://github.com/llvm/llvm-project
           cd llvm-project
