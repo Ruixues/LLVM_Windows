@@ -35,11 +35,15 @@ jobs:
           cd build
           cmake --build . --config Release --target ALL_BUILD
           cmake --build . --config Release --target INSTALL
-      - name: Archive Release
-        uses: vimtor/action-zip@v1
+      - name: Zip Release
+  # You may pin to the exact commit or the version.
+  # uses: TheDoctor0/zip-release@a1afcab9c664c9976ac398fa831eac67bed1eb0e
+        uses: TheDoctor0/zip-release@0.4.1
         with:
-          dest: 'release.zip'
-          files: 'C:/Program Files/LLVM'
+    # Filename for archive
+          filename: "release.zip" # default is release.zip
+    # Working directory before zipping
+          directory: "C:/Program Files/LLVM"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
