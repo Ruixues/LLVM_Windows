@@ -19,13 +19,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-      - name: Cache multiple paths
-        uses: actions/cache@v2
-        id: cache-llvm_project
-        with:
-          path:
-            ./llvm-project
-          key: ${{ runner.os }}-llvm_project
       - name: Install Visual Studio
         uses: ilammy/msvc-dev-cmd@v1
       - name: Install Clang
