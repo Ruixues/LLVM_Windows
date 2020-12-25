@@ -35,14 +35,9 @@ jobs:
           cd build
           cmake --build . --config Release --target ALL_BUILD
           cmake --build . --config Release --target INSTALL
-      - name: Setup MSYS2
-        uses: msys2/setup-msys2@v2
-        with:
-          install: "zip"
-          #directory: "C:/Program Files/LLVM"
       - name: Zip
         run: |
-          zip release.zip "C:/Program Files/LLVM"
+          Compress-Archive -Path C:\Program Files\LLVM -DestinationPath release.zip
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
